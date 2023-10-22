@@ -10,12 +10,19 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import modelo.*;
+
 
 /**
  *
  * @author user
  */
 public class validar extends HttpServlet {
+    
+    
+    EmpleadoDAO edao = new EmpleadoDAO();
+    Empleado em = new Empleado();
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,10 +73,25 @@ public class validar extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+       @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+             String accion=request.getParameter("accion");
+             if(accion.equalsIgnoreCase("Ingresar")){
+                 String user=request.getParameter("txtuser");
+                  String pass=request.getParameter("txtpass");
+                  em=edao.validar(user, pass);
+                  if(em.getUser()!=null){
+                      request.setAttribute("usuario", em);
+                   request.getRequestDispatcher("controlador?accion=principal").forward(request, response);
+                    }else{
+                      request.getRequestDispatcher("index.jsp").forward(request, response);
+
+                     }
+             }else{
+                 request.getRequestDispatcher("index.jsp").forward(request, response);
+             }
+             
     }
 
     /**

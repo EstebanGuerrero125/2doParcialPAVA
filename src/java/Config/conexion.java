@@ -16,7 +16,7 @@ public class conexion{
     String PASSWORD = "";
 
     public Connection Conexion() {
-        System.out.println("añañañañañai");
+      
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);

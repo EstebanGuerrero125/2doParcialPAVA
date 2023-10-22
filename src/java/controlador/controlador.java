@@ -28,19 +28,39 @@ public class controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet controlador</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet controlador at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+    
+        
+        String accion=request.getParameter("accion");
+        System.out.println("antes de switch");
+        switch (accion) {
+            case "Producto":
+                System.out.println("entra al if");
+                request.getRequestDispatcher("Producto.jsp").forward(request, response);
+                break;
+            case "principal":
+                System.out.println("principal");
+                request.getRequestDispatcher("principal.jsp").forward(request, response);
+                break;
+            
+            case "Cliente":
+                request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+                break;
+            case "Empleado":
+                request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+                break;
+            case "NuevaVenta":
+                request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+                break;
+            default:
+                throw new AssertionError();
         }
+
+    
+    
+    
+    
+    
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
