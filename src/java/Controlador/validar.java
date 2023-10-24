@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controlador;
+package Controlador;
 
+import Modelo.Empleado;
+import Modelo.EmpleadoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,7 +17,10 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-public class controlador extends HttpServlet {
+public class validar extends HttpServlet {
+
+    EmpleadoDAO edao = new EmpleadoDAO();
+    Empleado em = new Empleado();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,39 +33,19 @@ public class controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        
-        String accion=request.getParameter("accion");
-        System.out.println("antes de switch");
-        switch (accion) {
-            case "Producto":
-                System.out.println("entra al if");
-                request.getRequestDispatcher("Producto.jsp").forward(request, response);
-                break;
-            case "principal":
-                System.out.println("principal");
-                request.getRequestDispatcher("principal.jsp").forward(request, response);
-                break;
-            
-            case "Cliente":
-                request.getRequestDispatcher("Clientes.jsp").forward(request, response);
-                break;
-            case "Empleado":
-                request.getRequestDispatcher("Empleado.jsp").forward(request, response);
-                break;
-            case "NuevaVenta":
-                request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
-                break;
-            default:
-                throw new AssertionError();
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet validar</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet validar at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-    
-    
-    
-    
-    
-    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -89,7 +74,28 @@ public class controlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion = request.getParameter("accion");
+        System.out.println(accion);
+        System.out.println(accion);
+        System.out.println(accion);
+        System.out.println(accion);
+                
+        if (accion.equalsIgnoreCase("Ingresar")) {
+            String user = request.getParameter("txtuser");
+            String pass = request.getParameter("txtpass");
+            
+            em = edao.validar(user, pass);
+            if (em.getUser() != null) {
+                
+                request.setAttribute("usuario", em);
+                request.getRequestDispatcher("controlador?menu=Principal").forward(request, response);
+            } else {
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
     }
 
     /**
