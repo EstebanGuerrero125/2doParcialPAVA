@@ -1,7 +1,6 @@
 package Controlador;
 
-import Modelo.Cliente;
-import Modelo.ClienteDAO;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -9,8 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
-import Modelo.Empleado;
-import Modelo.EmpleadoDAO;
+import Modelo.*;
 
 /**
  *
@@ -22,6 +20,8 @@ public class controlador extends HttpServlet {
     EmpleadoDAO edao = new EmpleadoDAO();
     Cliente c = new Cliente();
     ClienteDAO cdao = new ClienteDAO();
+    Producto p= new Producto();
+    ProductoDAO pdao= new ProductoDAO();
     int ide;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -100,7 +100,16 @@ public class controlador extends HttpServlet {
                     c= cdao.buscar(dni);
                     request.setAttribute("c", c);
                     break;
+                case "BuscarProducto":
+                    int id=Integer.parseInt(request.getParameter("codigoproducto"));
+                    p=pdao.listarId(id);
+                    request.setAttribute("producto", p);
+                    break;
+                 case "Agregar":
+                   
+                    break;   
                 default:
+                    request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
                     //throw new AssertionError();
             }
             request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
