@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import Modelo.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,6 +24,18 @@ public class controlador extends HttpServlet {
     Producto p= new Producto();
     ProductoDAO pdao= new ProductoDAO();
     int ide;
+    int idc;
+    int idp;
+    
+    Venta v= new Venta();
+    List<Venta> lista= new ArrayList<>();
+    int item;
+    int cod;
+    String descripcion;
+    double precio;
+    int cant;
+    double subtotal;
+    double totalPagar;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -104,9 +117,29 @@ public class controlador extends HttpServlet {
                     int id=Integer.parseInt(request.getParameter("codigoproducto"));
                     p=pdao.listarId(id);
                     request.setAttribute("producto", p);
+                    request.setAttribute("lista", lista);
                     break;
                  case "Agregar":
-                   
+                     totalPagar=0.0;
+                   item=item+1;
+                   cod=p.getId();
+                   descripcion=request.getParameter("nombreproducto");
+                   precio=Double.parseDouble(request.getParameter("precio"));
+                   cant=Integer.parseInt(request.getParameter("cant"));
+                   subtotal=precio*cant;
+                   v=new Venta();
+                   v.setItem(item);
+                   v.setId(cod);
+                   v.setDescripcionP(descripcion);
+                   v.setPrecio(precio);
+                   v.setCantidad(cant);
+                   v.setSubtotal(subtotal);
+                   lista.add(v);
+                     for (int i = 0; i < lista.size(); i++) {
+                         totalPagar=totalPagar+lista.get(i).getSubtotal();
+                     }
+                   request.setAttribute("totalPagar", totalPagar);
+                   request.setAttribute("lista", lista);
                     break;   
                 default:
                     request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);

@@ -3,7 +3,7 @@
     Created on : 22/10/2023, 1:26:38 a. m.
     Author     : user
 --%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -87,15 +87,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <c:forEach var="list" items="${lista}">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>${list.getItem()}</td>
+                                    <td>${list.getIdproducto()}</td>
+                                    <td>${list.getDescripcionP()}</td>
+                                    <td>${list.getPrecio()}</td>
+                                    <td>${list.getCantidad()}</td>
+                                    <td>${list.getSubtotal()}</td>
+                                    <td class="d-flex">
+                                        <a href="#" class="btn btn-warning">Editar</a>
+                                        <a href="#" class="btn btn-danger" style="margin-left: 10px">Delete</a>
+                                    </td>
                                 </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -103,6 +108,9 @@
                         <div>
                             <input type="submit" name="accion" value="Generar Venta" class="btn btn-success">
                             <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">
+                        </div>
+                        <div class="col-sm-3 ml-auto">
+                            <input type="text" name="txtTotal" value="${totalPagar}" class="form-control">
                         </div>
                     </div>
                 </div>
