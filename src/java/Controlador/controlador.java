@@ -153,7 +153,7 @@ public class controlador extends HttpServlet {
                  case "Listar":
                     List listap = pdao.listar();
                     request.setAttribute("productos", listap);
-
+                     System.out.println("Test GIT");
                     break;
                 case "Agregar":
                     String nom = request.getParameter("txtNombres");
