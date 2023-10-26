@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -86,9 +87,14 @@ public class validar extends HttpServlet {
             
             em = edao.validar(user, pass);
             if (em.getUser() != null) {
-                
-                request.setAttribute("usuario", em);
+                HttpSession sesion = request.getSession();
+                System.out.println("Sesion número: " + sesion.getId());
+                sesion.setAttribute("usuario", em);
                 request.getRequestDispatcher("controlador?menu=Principal").forward(request, response);
+                
+                //sesion.removeAttribute("usuario");
+                //sesion.invalidate();
+                
             } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }

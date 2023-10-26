@@ -39,6 +39,7 @@ public class ClienteDAO {
                 c.setEstado(rs.getString(5));
             }
         } catch (SQLException e) {
+            System.out.println("Error buscarClienteDAO: " + e.getMessage());
         }
         return c;
     }
@@ -110,7 +111,7 @@ public class ClienteDAO {
             ps.setString(2, c.getNom());
             ps.setString(3, c.getDir());
             ps.setString(4, c.getEstado());
-            ps.setInt(6, c.getId());
+            ps.setInt(5, c.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al actualizar: " + e.getMessage());
