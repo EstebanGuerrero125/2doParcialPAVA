@@ -8,9 +8,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import = "Modelo.Empleado"%>
-<% HttpSession sesion = request.getSession();
+<% 
+
+    HttpSession sesion = request.getSession();
 Empleado emp = (Empleado) sesion.getAttribute("usuario");
 if(emp!=null) {
+
 %>
 
 <!DOCTYPE html>

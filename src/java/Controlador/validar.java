@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 /**
  *
@@ -83,9 +86,14 @@ public class validar extends HttpServlet {
                 
         if (accion.equalsIgnoreCase("Ingresar")) {
             String user = request.getParameter("txtuser");
-            String pass = request.getParameter("txtpass");
+            String pass = asegurarClave(request.getParameter("txtpass"));
+             Empleado em= new Empleado();
+             
+             em.setUser(user);            
+             em.setContrasena(pass);
+             
+            em = edao.validar(user, pass );
             
-            em = edao.validar(user, pass);
             if (em.getUser() != null) {
                 HttpSession sesion = request.getSession();
                 System.out.println("Sesion número: " + sesion.getId());
@@ -101,9 +109,38 @@ public class validar extends HttpServlet {
         } else {
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+        
+        if(accion.equalsIgnoreCase("Salir")){
+            HttpSession sesion = request.getSession();
+            sesion.removeAttribute("usuario");
+            sesion.invalidate();
+            request.getRequestDispatcher("controlador?menu=Principal").forward(request, response);
+            
+        
+        }
 
     }
 
+    
+       private String asegurarClave(String txtClaro){
+       String claveSha=null;
+        try { 
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            sha256.update(txtClaro.getBytes() );
+            claveSha = Base64.getEncoder().encodeToString(sha256.digest());
+            System.out.println("Clave sha es: " +claveSha);
+            System.out.println("Longitud: "+ claveSha.length());
+            
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("ERROR AL INSTANCIAR sha256 "+ex.getMessage() );
+        
+        }
+        
+    return claveSha;
+    
+    }
+    
+    
     /**
      * Returns a short description of the servlet.
      *

@@ -12,17 +12,27 @@ public class Empleado {
     String tel;
     String estado;
     String user;
+    String contrasena;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String dni, String nom, String tel, String estado, String user) {
+    public Empleado(int id, String dni, String nom, String tel, String estado, String user,String contrasena) {
         this.id = id;
         this.dni = dni;
         this.nom = nom;
         this.tel = tel;
         this.estado = estado;
         this.user = user;
+        this.contrasena = contrasena;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public int getId() {

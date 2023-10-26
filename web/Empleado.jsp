@@ -44,6 +44,7 @@ if(emp!=null) {
                             <label>Usuario</label>
                             <input type="text" value="${empleado.getUser()}" name="txtUser" class="form-control">
                         </div>
+                         
                         <div>
                             <input type="submit" name="accion" value="Agregar" class="btn btn-info">
                             <input type="submit" name="accion" value="Actualizar" class="btn btn-success">

@@ -9,7 +9,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import Modelo.*;
+import jakarta.servlet.http.HttpSession;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -42,9 +48,15 @@ public class controlador extends HttpServlet {
 
         String menu = request.getParameter("menu");
         String accion = request.getParameter("accion");
+        HttpSession sesion = request.getSession();
+        Empleado us = (Empleado) sesion.getAttribute("usuario");
+        
+        if(us!= null){
+        
+       
 
         if (menu.equals("Principal")) {
-            request.getRequestDispatcher("Principal.jsp").forward(request, response);
+            request.getRequestDispatcher("principal.jsp").forward(request, response);
         }
         if (menu.equals("Empleado")) {
 
@@ -60,11 +72,13 @@ public class controlador extends HttpServlet {
                     String tel = request.getParameter("txtTel");
                     String est = request.getParameter("txtEstado");
                     String user = request.getParameter("txtUser");
+                    String contra = asegurarClave(request.getParameter("txtContrasena"));
                     em.setDni(dni);
                     em.setNom(nom);
                     em.setTel(tel);
                     em.setEstado(est);
                     em.setUser(user);
+                    em.setContrasena(contra);
                     edao.agregar(em);
                     request.getRequestDispatcher("controlador?menu=Empleado&accion=Listar").forward(request, response);
                     break;
@@ -239,7 +253,32 @@ public class controlador extends HttpServlet {
             }
             request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
         }
+        
+        
+         }else{
+            request.getRequestDispatcher("controlador?menu=Principal").forward(request, response);
+        }
     }
+    
+    private String asegurarClave(String txtClaro){
+       String claveSha=null;
+        try { 
+            MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
+            sha256.update(txtClaro.getBytes() );
+            claveSha = Base64.getEncoder().encodeToString(sha256.digest());
+            System.out.println("Clave sha es: " +claveSha);
+            System.out.println("Longitud: "+ claveSha.length());
+            
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("ERROR AL INSTANCIAR sha256 "+ex.getMessage() );
+        
+        }
+        
+    return claveSha;
+    
+    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

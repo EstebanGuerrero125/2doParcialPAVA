@@ -20,21 +20,22 @@ public class EmpleadoDAO {
     ResultSet rs;
     int r;
 
-    public Empleado validar(String user, String dni) {
+    public Empleado validar(String user, String Contrasena) {
         Empleado em = new Empleado();
-        String sql = "select * from empleado where User=? and Dni=?";
+        String sql = "select * from empleado where User=? and Contrasena=?";
 
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.setString(1, user);
-            ps.setString(2, dni);
+            ps.setString(2, Contrasena);
             rs = ps.executeQuery();
             while (rs.next()) {
                 em.setId(rs.getInt("IdEmpleado"));
                 em.setUser(rs.getString("User"));
                 em.setDni(rs.getString("Dni"));
                 em.setNom(rs.getString("Nombres"));
+                em.setContrasena(rs.getString("Contrasena"));
             }
         } catch (Exception e) {
             System.out.println("error al validar " + e.getMessage());
