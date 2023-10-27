@@ -15,11 +15,21 @@ if(emp!=null) {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <title>JSP Page</title>
+        <title>Ventas</title>
+        <style>
+            @media print{
+                .parte01, .btn, .accion{
+                    display:none;
+                }
+                
+            }
+            
+        </style>
+        
     </head>
     <body>
         <div class="d-flex">
-            <div class="col-sm-4">
+            <div class="col-sm-4 parte01">
                 <div class="card">
                     <form action="controlador?menu=NuevaVenta" method="post">
                         <div class="card-body">
@@ -88,7 +98,7 @@ if(emp!=null) {
                                     <th>Precio</th>
                                     <th>Cantidad</th>
                                     <th>Subtotal</th>
-                                    <th>Acciones</th>
+                                    <th class="accion">  Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -111,7 +121,7 @@ if(emp!=null) {
                     </div>
                     <div class="card-footer d-flex">
                         <div>
-                            <a href="controlador?menu=NuevaVenta&accion=GenerarVenta" class="btn btn-success">Generar Venta</a>
+                            <a href="controlador?menu=NuevaVenta&accion=GenerarVenta" onclick="print()" class="btn btn-success">Generar Venta</a>
                             <input type="submit" name="menu=?GenerarVenta" value="Cancelar" class="btn btn-danger">
                         </div>
                         <div class="col-sm-3 ml-auto">
