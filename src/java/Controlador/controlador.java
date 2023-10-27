@@ -258,6 +258,20 @@ public class controlador extends HttpServlet {
                    request.setAttribute("nserie",numeroSerie);
                     break;
                  case "GenerarVenta":
+                     //Actualizar del stock
+                     for (int i=0; i<lista.size();i++){
+                         Producto p=new Producto();
+                         int cantidad=lista.get(i).getCantidad();
+                         int idproducto=lista.get(i).getIdproducto();
+                         ProductoDAO aO =new ProductoDAO();
+                         p =aO.buscar(idproducto);
+                         int sac=p.getStock()-cantidad;
+                         aO.actualizarstock(idproducto, sac);
+                         
+                     
+                     }
+                     
+                     //Guardar Venta
                     v.setIdcliente(c.getId());
                     v.setIdempleado(us.getId());//Se usa us debido a que se inicio sesion con un empleado
                     v.setNumserie(numeroSerie);
