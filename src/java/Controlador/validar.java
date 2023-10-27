@@ -85,7 +85,7 @@ public class validar extends HttpServlet {
         System.out.println(accion);
                 
         if (accion.equalsIgnoreCase("Ingresar")) {
-            String user = request.getParameter("txtuser");
+            String user = request.getParameter("txtuser"); 
             String pass = asegurarClave(request.getParameter("txtpass"));
              Empleado em= new Empleado();
              

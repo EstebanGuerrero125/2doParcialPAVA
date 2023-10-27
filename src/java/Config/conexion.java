@@ -13,7 +13,7 @@ public class conexion{
 
     String URL = "jdbc:mysql://localhost:3306/bd_ventas";
     String USERNAME = "root";
-    String PASSWORD = "123456";
+    String PASSWORD = "";
 
     public Connection Conexion() {
       
