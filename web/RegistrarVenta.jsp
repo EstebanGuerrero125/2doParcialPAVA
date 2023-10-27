@@ -77,7 +77,7 @@ if(emp!=null) {
                     <div class="card-body">
                         <div class="d-flex col-sm-6 ml-auto">
                             <label>Numero de Serie: </label>
-                            <input type="text" name="NroSerie" class="form-control">
+                            <input type="text" name="NroSerie" value="${nserie}" class="form-control">
                         </div><br>
                         <table class="table table-hover">
                             <thead>
@@ -109,13 +109,13 @@ if(emp!=null) {
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer d-flex">
                         <div>
-                            <input type="submit" name="accion" value="Generar Venta" class="btn btn-success">
-                            <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">
+                            <a href="controlador?menu=NuevaVenta&accion=GenerarVenta" class="btn btn-success">Generar Venta</a>
+                            <input type="submit" name="menu=?GenerarVenta" value="Cancelar" class="btn btn-danger">
                         </div>
                         <div class="col-sm-3 ml-auto">
-                            <input type="text" name="txtTotal" value="${totalPagar}" class="form-control">
+                            <input type="text" name="txtTotal" value="$${totalPagar}" class="form-control">
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 package Controlador;
 
 
+import Config.GenerarSerie;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -42,6 +43,9 @@ public class controlador extends HttpServlet {
     int cant;
     double subtotal;
     double totalPagar;
+    
+    String numeroSerie;
+    VentaDAO vdao=new VentaDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -218,14 +222,19 @@ public class controlador extends HttpServlet {
                     c.setDni(dni);
                     c= cdao.buscar(dni);
                     request.setAttribute("c", c);
+                    request.setAttribute("nserie",numeroSerie);
                     break;
                 case "BuscarProducto":
                     int id=Integer.parseInt(request.getParameter("codigoproducto"));
                     p=pdao.listarId(id);
+                    request.setAttribute("c", c);
                     request.setAttribute("producto", p);
                     request.setAttribute("lista", lista);
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("nserie",numeroSerie);
                     break;
                  case "Agregar":
+                     request.setAttribute("c", c);
                      totalPagar=0.0;
                    item=item+1;
                    cod=p.getId();
@@ -235,7 +244,7 @@ public class controlador extends HttpServlet {
                    subtotal=precio*cant;
                    v=new Venta();
                    v.setItem(item);
-                   v.setId(cod);
+                   v.setIdproducto(cod);
                    v.setDescripcionP(descripcion);
                    v.setPrecio(precio);
                    v.setCantidad(cant);
@@ -246,8 +255,38 @@ public class controlador extends HttpServlet {
                      }
                    request.setAttribute("totalPagar", totalPagar);
                    request.setAttribute("lista", lista);
-                    break;   
+                   request.setAttribute("nserie",numeroSerie);
+                    break;
+                 case "GenerarVenta":
+                    v.setIdcliente(c.getId());
+                    v.setIdempleado(us.getId());//Se usa us debido a que se inicio sesion con un empleado
+                    v.setNumserie(numeroSerie);
+                    v.setFecha("2023-10-26");
+                    v.setMonto(totalPagar);
+                    v.setEstado("1");
+                    vdao.guardarVentas(v);
+                    int idv=Integer.parseInt(vdao.IdVentas());
+                     for (int i = 0; i < lista.size(); i++) {
+                         v=new Venta();
+                         v.setId(idv);
+                         v.setIdcliente(lista.get(i).getIdcliente());
+                         v.setIdproducto(lista.get(i).getIdproducto());
+                         v.setCantidad(lista.get(i).getCantidad());
+                         v.setPrecio(lista.get(i).getPrecio());
+                         vdao.guardarDetalleventas(v);  
+                     }
+                    break;
                 default:
+                    numeroSerie=vdao.GenerarSerie();
+                    if(numeroSerie==null){
+                        numeroSerie="00000001";
+                        request.setAttribute("nserie",numeroSerie);
+                    }else{
+                        int incremetar=Integer.parseInt(numeroSerie);
+                        GenerarSerie gs= new GenerarSerie();
+                        numeroSerie=gs.NumeroSerie(incremetar);
+                        request.setAttribute("nserie",numeroSerie);
+                    }
                     request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
                     //throw new AssertionError();
             }
