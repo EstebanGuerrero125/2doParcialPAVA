@@ -111,8 +111,8 @@ if(emp!=null) {
                                     <td>${list.getCantidad()}</td>
                                     <td>${list.getSubtotal()}</td>
                                     <td class="d-flex">
-                                        <a href="#" class="btn btn-warning">Editar</a>
-                                        <a href="#" class="btn btn-danger" style="margin-left: 10px">Delete</a>
+                                         <a class="btn btn-warning" href="controlador?menu=NuevaVenta&accion=Editar&id=${list.getIdproducto()}">Editar</a>
+                                         <a class="btn btn-danger" href="controlador?menu=NuevaVenta&accion=Delete&id=${list.getIdproducto()}">Delete</a>
                                     </td>
                                 </tr>
                                 </c:forEach>
@@ -122,7 +122,7 @@ if(emp!=null) {
                     <div class="card-footer d-flex">
                         <div>
                             <a href="controlador?menu=NuevaVenta&accion=GenerarVenta" onclick="print()" class="btn btn-success">Generar Venta</a>
-                            <input type="submit" name="menu=?GenerarVenta" value="Cancelar" class="btn btn-danger">
+                            <a href="controlador?menu=NuevaVenta&accion=CancelarVenta" class="btn btn-danger">Cancelar Venta</a>
                         </div>
                         <div class="col-sm-3 ml-auto">
                             <input type="text" name="txtTotal" value="$${totalPagar}" class="form-control">

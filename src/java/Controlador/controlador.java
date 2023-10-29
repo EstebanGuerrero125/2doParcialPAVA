@@ -267,10 +267,7 @@ public class controlador extends HttpServlet {
                          p =aO.buscar(idproducto);
                          int sac=p.getStock()-cantidad;
                          aO.actualizarstock(idproducto, sac);
-                         
-                     
                      }
-                     
                      //Guardar Venta
                     v.setIdcliente(c.getId());
                     v.setIdempleado(us.getId());//Se usa us debido a que se inicio sesion con un empleado
@@ -289,6 +286,37 @@ public class controlador extends HttpServlet {
                          v.setPrecio(lista.get(i).getPrecio());
                          vdao.guardarDetalleventas(v);  
                      }
+                    lista.clear();
+                    break;
+                case "CancelarVenta":
+                     lista.clear();
+                     break;
+                case "Editar":
+                    idp = Integer.parseInt(request.getParameter("id"));
+                    p=pdao.listarId(idp);
+                    request.setAttribute("c", c);
+                    request.setAttribute("producto", p);
+                    request.setAttribute("lista", lista);
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("nserie",numeroSerie);
+                    request.getRequestDispatcher("controlador?menu=NuevaVenta&accion=Delete").forward(request, response);
+                    break;
+                case "Delete":
+                    idp = Integer.parseInt(request.getParameter("id"));//Trae el id del producto a eliminar
+                    totalPagar=0;
+                    for (int i = 0; i < lista.size(); i++) {
+                       int idpe=lista.get(i).getIdproducto();//Trae cada id de producto de la lista
+                        if(idp==idpe){//Compara el id producto que se desea eliminar con cada id de producto de la lista
+                           lista.remove(i);//Elimina el elemento
+                        }
+                    }
+                    for (int i = 0; i < lista.size(); i++) {
+                         totalPagar=totalPagar+lista.get(i).getSubtotal();//Recorre la lista para revisar el nuevo valor total
+                    }
+                    request.setAttribute("c", c);
+                    request.setAttribute("lista", lista);
+                    request.setAttribute("totalPagar", totalPagar);
+                    request.setAttribute("nserie",numeroSerie);
                     break;
                 default:
                     numeroSerie=vdao.GenerarSerie();
