@@ -19,30 +19,34 @@ if(emp!=null) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
-    <body>
-        <div class="d-flex">
-            <div class="card col-sm-4">
-                <div class="card-body">
+    <body style="background-color:#333333">
+        <div class="d-flex" >
+            <div class="card col-sm-4" style="background-color:#212529">
+                <div class="card-body" >
                     <form action="controlador?menu=Empleado" method="post">
                         <div class="form-group">
-                            <label>Dni</label>
+                            <label style="color:#ffffff;">Dni</label>
                             <input type="text" value="${empleado.getDni()}" name="txtDni" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Nombres</label>
+                            <label style="color:#ffffff;">Nombres</label>
                             <input type="text" value="${empleado.getNom()}" name="txtNombres" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Telefono</label>
+                            <label style="color:#ffffff;">Telefono</label>
                             <input type="text" value="${empleado.getTel()}" name="txtTel" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Estado</label>
+                            <label style="color:#ffffff;">Estado</label>
                             <input type="text" value="${empleado.getEstado()}" name="txtEstado" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Usuario</label>
+                            <label style="color:#ffffff;">Usuario</label>
                             <input type="text" value="${empleado.getUser()}" name="txtUser" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label style="color:#ffffff;">Contraseña</label>
+                            <input type="password" value="${empleado.getUser()}" name="txtContrasena" class="form-control">
                         </div>
                          
                         <div>
@@ -53,7 +57,7 @@ if(emp!=null) {
                 </div>
             </div>
             <div class="col-sm-8">
-                <table class="table table-hover">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr>
                             <th>ID</th>

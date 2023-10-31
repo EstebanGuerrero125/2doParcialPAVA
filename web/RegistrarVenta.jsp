@@ -27,14 +27,14 @@ if(emp!=null) {
         </style>
         
     </head>
-    <body>
+    <body style="background-color:#333333">
         <div class="d-flex">
-            <div class="col-sm-4 parte01">
-                <div class="card">
+            <div class="col-sm-4 parte01" style="background-color:#212529">
+                <div class="card" style="background-color:#212529">
                     <form action="controlador?menu=NuevaVenta" method="post">
                         <div class="card-body">
                             <div class="form-group">
-                                <label>Datos del Cliente</label>
+                                <label style="color:#ffffff;">Datos del Cliente</label>
                             </div>
                             <div class="form-group d-flex">
                                 <div class="col-sm-6 d-flex">
@@ -46,7 +46,7 @@ if(emp!=null) {
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Datos Producto</label>
+                                <label style="color:#ffffff;">Datos Producto</label>
                             </div>
                             <div class="form-group d-flex">
                                 <div class="form-group d-flex">
@@ -83,13 +83,13 @@ if(emp!=null) {
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="card">
+                <div class="card" style="background-color:#212529">
                     <div class="card-body">
                         <div class="d-flex col-sm-6 ml-auto">
-                            <label>Numero de Serie: </label>
+                            <label style="color:#ffffff;">Numero de Serie: </label>
                             <input type="text" name="NroSerie" value="${nserie}" class="form-control">
                         </div><br>
-                        <table class="table table-hover">
+                        <table class="table table-hover table-dark">
                             <thead>
                                 <tr>
                                     <th>Nro</th>
@@ -119,12 +119,13 @@ if(emp!=null) {
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer d-flex">
+                    <div class="card-footer d-flex" style="background-color:#212529">
                         <div>
                             <a href="controlador?menu=NuevaVenta&accion=GenerarVenta" onclick="print()" class="btn btn-success">Generar Venta</a>
                             <a href="controlador?menu=NuevaVenta&accion=CancelarVenta" class="btn btn-danger">Cancelar Venta</a>
                         </div>
-                        <div class="col-sm-3 ml-auto">
+                        <div class="d-flex col-sm-3 ml-auto">
+                            <label style="color:#ffffff;">Total a pagar: </label>
                             <input type="text" name="txtTotal" value="$${totalPagar}" class="form-control">
                         </div>
                     </div>

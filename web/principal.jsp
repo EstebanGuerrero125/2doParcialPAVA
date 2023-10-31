@@ -26,8 +26,8 @@ if(emp!=null) {
     </head>
 
 
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <body style="background-color:#333333">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-info"  >
 
 
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -51,7 +51,7 @@ if(emp!=null) {
 
 
             </div>
-
+            
 
             <div class="dropdown">
                 <button  class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -70,12 +70,12 @@ if(emp!=null) {
                         <button name="accion" value="Salir" class="dropdown-item" href="#">Salir</button>
                     </form>
                 </div> 
-            </div>  
+            </div>
 
         </nav>
 
 
-        <div class="m-3" style="height: 550px;"> 
+        <div class="m-3" style="height: 650px;"> 
             <iframe name="myFrame" style="height: 100%; width: 100%; border: none"></iframe> 
         </div>
                     

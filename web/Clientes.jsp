@@ -19,25 +19,26 @@ if(emp!=null) {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color:#333333">
+        
         <div class="d-flex">
-            <div class="card col-sm-4">
+            <div class="card col-sm-4" style="background-color:#212529">
                 <div class="card-body">
                     <form action="controlador?menu=Clientes" method="post">
                         <div class="form-group">
-                            <label>Dni</label>
+                            <label style="color:#ffffff;">Dni</label>
                             <input type="text" value="${cliente.getDni()}" name="txtDni" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Nombres</label>
+                            <label style="color:#ffffff;">Nombres</label>
                             <input type="text" value="${cliente.getNom()}" name="txtNombres" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Direccion</label>
+                            <label style="color:#ffffff;">Direccion</label>
                             <input type="text" value="${cliente.getDir()}" name="txtDir" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Estado</label>
+                            <label style="color:#ffffff;">Estado</label>
                             <input type="text" value="${cliente.getEstado()}" name="txtEstado" class="form-control">
                         </div>
                         <div>
@@ -48,7 +49,7 @@ if(emp!=null) {
                 </div>
             </div>
             <div class="col-sm-8">
-                <table class="table table-hover">
+                <table class="table table-hover table-dark">
                     <thead>
                         <tr>
                             <th>ID</th>

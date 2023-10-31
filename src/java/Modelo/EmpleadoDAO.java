@@ -71,7 +71,7 @@ public class EmpleadoDAO {
     }
 
     public int agregar(Empleado em) {
-        String sql = "INSERT INTO empleado (Dni, Nombres, Telefono, Estado, User) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO empleado (Dni, Nombres, Telefono, Estado, User, Contrasena) VALUES(?,?,?,?,?,?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -80,6 +80,7 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
+            ps.setString(6, em.getContrasena());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al agregar: " + e.getMessage());
