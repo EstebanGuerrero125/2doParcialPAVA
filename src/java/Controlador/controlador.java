@@ -13,8 +13,10 @@ import Modelo.*;
 import jakarta.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -272,7 +274,11 @@ public class controlador extends HttpServlet {
                     v.setIdcliente(c.getId());
                     v.setIdempleado(us.getId());//Se usa us debido a que se inicio sesion con un empleado
                     v.setNumserie(numeroSerie);
-                    v.setFecha("2023-10-26");
+                   // FECHA Y HORA ACTUAL DE COMPRA DE PRODCUTO
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                     Date fecha = new Date();
+                     String fechaC = sdf.format(fecha);
+                     v.setFecha(fechaC);
                     v.setMonto(totalPagar);
                     v.setEstado("1");
                     vdao.guardarVentas(v);
