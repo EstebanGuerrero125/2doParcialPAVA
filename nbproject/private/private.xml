@@ -3,20 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Modelo/EmpleadoDAO.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Modelo/ClienteDAO.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/web/RegistrarVenta.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Modelo/Producto.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Modelo/VentaDAO.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Modelo/Empleado.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Modelo/Venta.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/web/Empleado.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Controlador/validar.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/web/principal.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/web/index.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/web/Clientes.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Controlador/controlador.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/2doParcialPAVA/src/java/Modelo/ProductoDAO.java</file>
+            <file>file:/C:/Users/Estudiante/Downloads/2doParcialPAVA-main/src/java/Config/conexion.java</file>
+            <file>file:/C:/Users/Estudiante/Downloads/2doParcialPAVA-main/src/java/Modelo/EmpleadoDAO.java</file>
+            <file>file:/C:/Users/Estudiante/Downloads/2doParcialPAVA-main/src/java/Config/GenerarSerie.java</file>
+            <file>file:/C:/Users/Estudiante/Downloads/2doParcialPAVA-main/src/java/Controlador/controlador.java</file>
         </group>
     </open-files>
 </project-private>

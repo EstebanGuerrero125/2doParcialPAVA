@@ -37,7 +37,7 @@ public class EmpleadoDAO {
                 em.setNom(rs.getString("Nombres"));
                 em.setContrasena(rs.getString("Contrasena"));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("error al validar " + e.getMessage());
         }
 
@@ -109,7 +109,7 @@ public class EmpleadoDAO {
     }
 
     public int actualizar(Empleado em) {
-        String sql = "update empleado set Dni=?, Nombres=?, Telefono=?, Estado=?, User=? where IdEmpleado=?";
+        String sql = "update empleado set Dni=?, Nombres=?, Telefono=?, Estado=?, User=?, Contrasena=? where IdEmpleado=?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -118,7 +118,9 @@ public class EmpleadoDAO {
             ps.setString(3, em.getTel());
             ps.setString(4, em.getEstado());
             ps.setString(5, em.getUser());
-            ps.setInt(6, em.getId());
+            System.out.println("REVISAR CONTRASEÑAAAAAa"+em.getContrasena());
+            ps.setString(6, em.getContrasena());
+            ps.setInt(7, em.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al actualizar: " + e.getMessage());

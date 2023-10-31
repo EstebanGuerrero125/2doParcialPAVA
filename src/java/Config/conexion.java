@@ -11,9 +11,9 @@ public class conexion{
 
     Connection con;
 
-    String URL = "jdbc:mysql://localhost:3306/bd_ventas";
+    String URL = "jdbc:mysql://10.28.0.49:33063/bd_ventas";
     String USERNAME = "root";
-    String PASSWORD = "";
+    String PASSWORD = "123456";
 
     public Connection Conexion() {
       
@@ -21,7 +21,7 @@ public class conexion{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.println("Conexion con la Base de datos exitosa");
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
         return con;
