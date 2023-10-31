@@ -39,7 +39,7 @@ public class ProductoDAO {
                 p.setStock(rs.getInt(4));
                 p.setEstado(rs.getString(5));            
             }         
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al buscar prod: " + e.getMessage());
         }
     return p;
@@ -78,7 +78,7 @@ public class ProductoDAO {
                 em.setEstado(rs.getString(5));
                 lista.add(em); 
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
              System.out.println("Error al listar: " + e.getMessage());
         }
         return lista;
@@ -94,7 +94,7 @@ public class ProductoDAO {
             ps.setInt(3, em.getStock());
             ps.setString(4, em.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al agregar: " + e.getMessage());
         }
         return r;
@@ -114,7 +114,7 @@ public class ProductoDAO {
                 pr.setStock(rs.getInt(4));
                 pr.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
              System.out.println("Error al listar: " + e.getMessage());
         }
         return pr;
@@ -131,7 +131,7 @@ public class ProductoDAO {
             ps.setString(4, em.getEstado());
             ps.setInt(5, em.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al agregar: " + e.getMessage());
         }
         return r;
