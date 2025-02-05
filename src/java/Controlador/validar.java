@@ -118,6 +118,10 @@ public class validar extends HttpServlet {
             
         
         }
+        
+        if(accion.equalsIgnoreCase("Modificar")){
+            
+        }
 
     }
 

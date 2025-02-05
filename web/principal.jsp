@@ -64,7 +64,12 @@ if(emp!=null) {
                     </a>
                     <a class="dropdown-item" href="#">${usuario.getUser()}</a>
                     <a class="dropdown-item" href="#">petroeshambre@gmail.com</a>
+                   
                     <div class="dropdown-divider"> </div>
+                    
+                    <form action="ModificarPerfil" method="POST">
+                        <button name="accion" value="Modificar" class="dropdown-item" href="#">Modificar Perfil</button>
+                    </form>
 
                     <form action="validar" method="POST">
                         <button name="accion" value="Salir" class="dropdown-item" href="#">Salir</button>

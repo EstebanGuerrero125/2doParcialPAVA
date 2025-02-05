@@ -11,9 +11,9 @@ public class conexion{
 
     Connection con;
 
-    String URL = "jdbc:mysql://10.28.0.49:33063/bd_ventas";
+    String URL = "jdbc:mysql://localhost:3306/bd_ventas";
     String USERNAME = "root";
-    String PASSWORD = "123456";
+    String PASSWORD = "";
 
     public Connection Conexion() {
       
