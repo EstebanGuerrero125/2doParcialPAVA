@@ -13,7 +13,7 @@ public class Empleado {
     String estado;
     String user;
     String contrasena;
-
+    String userVerificador;
     public Empleado() {
     }
 
@@ -25,6 +25,14 @@ public class Empleado {
         this.estado = estado;
         this.user = user;
         this.contrasena = contrasena;
+    }
+
+    public String getUserVerificador() {
+        return userVerificador;
+    }
+
+    public void setUserVerificador(String userVerificador) {
+        this.userVerificador = userVerificador;
     }
 
     public String getContrasena() {

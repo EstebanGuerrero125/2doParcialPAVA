@@ -79,6 +79,9 @@ public class controlador extends HttpServlet {
                     String est = request.getParameter("txtEstado");
                     String user = request.getParameter("txtUser");
                     String contra = asegurarClave(request.getParameter("txtContrasena"));
+                    String userValidation = edao.verificarUser(user);
+                    System.out.println("prueba userValidation: "+ userValidation);
+                    if(!user.equals(userValidation)){
                     em.setDni(dni);
                     em.setNom(nom);
                     em.setTel(tel);
@@ -87,6 +90,13 @@ public class controlador extends HttpServlet {
                     em.setContrasena(contra);
                     edao.agregar(em);
                     request.getRequestDispatcher("controlador?menu=Empleado&accion=Listar").forward(request, response);
+                    
+                    }else{
+                        
+                        System.out.println("El usuario ingresado ya se encuentra en uso");
+                        List listae1 = edao.listar();
+                    request.setAttribute("empleados", listae1);
+                    }
                     break;
                 case "Editar":
                     ide = Integer.parseInt(request.getParameter("id"));
@@ -101,6 +111,7 @@ public class controlador extends HttpServlet {
                     String est1 = request.getParameter("txtEstado");
                     String user1 = request.getParameter("txtUser");
                     String contra1 = asegurarClave(request.getParameter("txtContrasena"));
+                    System.out.println("Prueba contraseña: "+ contra1);
                     em.setDni(dni1);
                     em.setNom(nom1);
                     em.setTel(tel1);

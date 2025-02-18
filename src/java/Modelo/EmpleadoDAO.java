@@ -20,6 +20,26 @@ public class EmpleadoDAO {
     ResultSet rs;
     int r;
 
+    public String verificarUser(String user){
+        Empleado em = new Empleado();
+        String sql = "select User from empleado where User=?";
+                   
+         try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                em.setUserVerificador(rs.getString("User"));              
+            }
+        } catch (SQLException e) {
+            System.out.println("error al verificar usuario registrado " + e.getMessage());
+          
+        }
+        return em.getUserVerificador();
+    }
+    
+    
     public Empleado validar(String user, String Contrasena) {
         Empleado em = new Empleado();
         String sql = "select * from empleado where User=? and Contrasena=?";
